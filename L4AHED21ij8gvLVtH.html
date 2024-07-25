@@ -1,0 +1,516 @@
+<html><head><base href="https://www.brocantechic.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrocanteChic - Objets Vintage et Brocante</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+  :root {
+    --primary-color: #0064D2;
+    --secondary-color: #F5AF02;
+    --accent-color: #86B817;
+    --text-color: #333333;
+    --background-color: #FFFFFF;
+    --light-gray: #F5F5F5;
+    --heart-color: #FFFFFF;
+    --heart-active-color: #FF0000;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+
+  header {
+    background-color: var(--primary-color);
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--background-color);
+    text-decoration: none;
+  }
+
+  .menu {
+    list-style-type: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .menu li a {
+    color: var(--background-color);
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  main {
+    padding-top: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .hero {
+    background-image: url('https://source.unsplash.com/random/1200x400?vintage');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--background-color);
+    margin-bottom: 2rem;
+  }
+
+  .hero-content {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 5px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .product-card {
+    background-color: var(--light-gray);
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .product-info {
+    padding: 1rem;
+  }
+
+  .product-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-price {
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+
+  .heart-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: var(--heart-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .heart-icon.active {
+    color: var(--heart-active-color);
+  }
+
+  .promotion-banner {
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    text-align: center;
+    padding: 0.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  footer {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .modal-content {
+    background-color: var(--background-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .add-to-cart {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .add-to-cart:hover {
+    background-color: #6e9912;
+  }
+
+  @media (max-width: 768px) {
+    .menu {
+      display: none;
+    }
+
+    main {
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/" class="logo">BrocanteChic</a>
+      <ul class="menu">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/produits">Produits</a></li>
+        <li><a href="/mes-objets" id="myObjectsLink">Mes Objets (0)</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/panier" id="cartLink">Panier (0)</a></li>
+        <li><a href="#" id="authButton">Connexion / Inscription</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Découvrez des Trésors Vintage</h1>
+        <p>Des objets uniques pour votre intérieur</p>
+      </div>
+    </div>
+
+    <div class="promotion-banner" id="promotionBanner">
+      Promotion temporaire : -30% sur une sélection d'articles !
+    </div>
+
+    <div class="product-grid" id="productGrid">
+      <!-- Les produits seront générés dynamiquement par JavaScript -->
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 BrocanteChic. Tous droits réservés.</p>
+  </footer>
+
+  <!-- Modal de connexion -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="authModalTitle">Connexion</h2>
+      <form id="authForm">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Mot de passe" required>
+        <button type="submit">Se connecter</button>
+      </form>
+      <p id="authToggle">Pas encore de compte ? <a href="#" id="authToggleLink">S'inscrire</a></p>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      { id: 1, name: "Lampe vintage en laiton", price: 89.99, image: "https://source.unsplash.com/random/400x300?vintage+lamp" },
+      { id: 2, name: "Chaise en rotin années 70", price: 129.00, image: "https://source.unsplash.com/random/400x300?vintage+chair" },
+      { id: 3, name: "Miroir art déco", price: 199.99, image: "https://source.unsplash.com/random/400x300?vintage+mirror" },
+      { id: 4, name: "Table basse scandinave", price: 149.50, image: "https://source.unsplash.com/random/400x300?vintage+table" },
+      { id: 5, name: "Horloge murale rétro", price: 59.99, image: "https://source.unsplash.com/random/400x300?vintage+clock" },
+      { id: 6, name: "Vaisselier en bois massif", price: 399.00, image: "https://source.unsplash.com/random/400x300?vintage+cabinet" },
+    ];
+
+    let myObjects = [];
+    let cart = [];
+    let isAuthenticated = false;
+    let currentUser = null;
+
+    // Simuler une base de données
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+
+    function renderProducts() {
+      const productGrid = document.getElementById('productGrid');
+      productGrid.innerHTML = '';
+
+      products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.classList.add('product-card');
+        const isLiked = myObjects.some(obj => obj.id === product.id);
+        productCard.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" class="product-image">
+          <span class="heart-icon ${isLiked ? 'active' : ''}" data-id="${product.id}">&#10084;</span>
+          <div class="product-info">
+            <h3 class="product-title">${product.name}</h3>
+            <p class="product-price">${product.price.toFixed(2)} €</p>
+            <button class="add-to-cart" data-id="${product.id}">Ajouter au panier</button>
+          </div>
+        `;
+        productGrid.appendChild(productCard);
+      });
+    }
+
+    function updateMyObjectsCount() {
+      const myObjectsLink = document.getElementById('myObjectsLink');
+      myObjectsLink.textContent = `Mes Objets (${myObjects.length})`;
+    }
+
+    function updateCartCount() {
+      const cartLink = document.getElementById('cartLink');
+      cartLink.textContent = `Panier (${cart.length})`;
+    }
+
+    function toggleLike(productId) {
+      if (!isAuthenticated) {
+        showAuthModal();
+        return;
+      }
+
+      const product = products.find(p => p.id === productId);
+      const index = myObjects.findIndex(obj => obj.id === productId);
+
+      if (index === -1) {
+        myObjects.push(product);
+      } else {
+        myObjects.splice(index, 1);
+      }
+
+      updateMyObjectsCount();
+      renderProducts();
+    }
+
+    function addToCart(productId) {
+      if (!isAuthenticated) {
+        showAuthModal();
+        return;
+      }
+
+      const product = products.find(p => p.id === productId);
+      cart.push(product);
+      updateCartCount();
+      alert(`${product.name} a été ajouté à votre panier.`);
+    }
+
+    // Modal de connexion/inscription
+    const authModal = document.getElementById('authModal');
+    const authButton = document.getElementById('authButton');
+    const closeBtn = document.getElementsByClassName('close')[0];
+    const authForm = document.getElementById('authForm');
+    const authToggle = document.getElementById('authToggle');
+    const authToggleLink = document.getElementById('authToggleLink');
+    const authModalTitle = document.getElementById('authModalTitle');
+
+    let isLoginMode = true;
+
+    function showAuthModal() {
+      authModal.style.display = 'block';
+    }
+
+    function closeAuthModal() {
+      authModal.style.display = 'none';
+    }
+
+    function toggleAuthMode() {
+      isLoginMode = !isLoginMode;
+      authModalTitle.textContent = isLoginMode ? 'Connexion' : 'Inscription';
+      authForm.querySelector('button').textContent = isLoginMode ? 'Se connecter' : 'S\'inscrire';
+      authToggleLink.textContent = isLoginMode ? 'S\'inscrire' : 'Se connecter';
+    }
+
+    authButton.onclick = showAuthModal;
+    closeBtn.onclick = closeAuthModal;
+    authToggleLink.onclick = toggleAuthMode;
+
+    window.onclick = function(event) {
+      if (event.target == authModal) {
+        closeAuthModal();
+      }
+    }
+
+    authForm.onsubmit = function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (isLoginMode) {
+        // Connexion
+        const user = users.find(u => u.email === email && u.password === password);
+        if (user) {
+          isAuthenticated = true;
+          currentUser = user;
+          myObjects = user.myObjects || [];
+          cart = user.cart || [];
+          closeAuthModal();
+          updateUI();
+        } else {
+          alert('Email ou mot de passe incorrect.');
+        }
+      } else {
+        // Inscription
+        if (users.some(u => u.email === email)) {
+          alert('Cet email est déjà utilisé.');
+        } else {
+          const newUser = { email, password, myObjects: [], cart: [] };
+          users.push(newUser);
+          localStorage.setItem('users', JSON.stringify(users));
+          isAuthenticated = true;
+          currentUser = newUser;
+          closeAuthModal();
+          updateUI();
+        }
+      }
+    }
+
+    function updateUI() {
+      authButton.textContent = isAuthenticated ? 'Déconnexion' : 'Connexion / Inscription';
+      updateMyObjectsCount();
+      updateCartCount();
+      renderProducts();
+    }
+
+    authButton.addEventListener('click', () => {
+      if (isAuthenticated) {
+        isAuthenticated = false;
+        currentUser = null;
+        myObjects = [];
+        cart = [];
+        updateUI();
+      } else {
+        showAuthModal();
+      }
+    });
+
+    // Promotion temporaire
+    const promotionBanner = document.getElementById('promotionBanner');
+    const promotionEndTime = new Date().getTime() + 24 * 60 * 60 * 1000; // 24 heures à partir de maintenant
+
+    function updatePromotionBanner() {
+      const now = new Date().getTime();
+      const timeLeft = promotionEndTime - now;
+
+      if (timeLeft > 0) {
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        promotionBanner.textContent = `Promotion temporaire : -30% sur une sélection d'articles ! Temps restant : ${hours}h ${minutes}m ${seconds}s`;
+      } else {
+        promotionBanner.style.display = 'none';
+      }
+    }
+
+    setInterval(updatePromotionBanner, 1000);
+
+    document.addEventListener('click', (event) => {
+      if (event.target.classList.contains('heart-icon')) {
+        const productId = parseInt(event.target.dataset.id);
+        toggleLike(productId);
+      }
+      if (event.target.classList.contains('add-to-cart')) {
+        const productId = parseInt(event.target.dataset.id);
+        addToCart(productId);
+      }
+    });
+
+    // Initialisation
+    updateUI();
+    updatePromotionBanner();
+  </script>
+</body>
+</html>
